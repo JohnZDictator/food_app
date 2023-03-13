@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../models/simple_recipe.dart';
+import '../models/models.dart';
 
 class RecipeThumbnail extends StatelessWidget {
-  const RecipeThumbnail({super.key, required this.recipe});
-
   final SimpleRecipe recipe;
+
+  const RecipeThumbnail({
+    super.key,
+    required this.recipe,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +30,11 @@ class RecipeThumbnail extends StatelessWidget {
           Text(
             recipe.title,
             maxLines: 1,
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: Theme.of(context).textTheme.bodyText1,
           ),
           Text(
             recipe.duration,
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: Theme.of(context).textTheme.bodyText1,
           ),
         ],
       ),

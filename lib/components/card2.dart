@@ -25,7 +25,9 @@ class Card2 extends StatelessWidget {
             image: AssetImage(recipe.backgroundImage),
             fit: BoxFit.cover,
           ),
-          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(10.0),
+          ),
         ),
         child: Column(
           children: [
@@ -42,7 +44,7 @@ class Card2 extends StatelessWidget {
                     right: 16,
                     child: Text(
                       recipe.title,
-                      style: FooderlichTheme.lightTextTheme.headlineLarge,
+                      style: FooderlichTheme.lightTextTheme.headline1,
                     ),
                   ),
                   Positioned(
@@ -52,7 +54,7 @@ class Card2 extends StatelessWidget {
                       quarterTurns: 3,
                       child: Text(
                         recipe.subtitle,
-                        style: FooderlichTheme.lightTextTheme.headlineLarge,
+                        style: FooderlichTheme.lightTextTheme.headline1,
                       ),
                     ),
                   ),

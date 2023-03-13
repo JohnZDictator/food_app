@@ -3,57 +3,57 @@ import 'package:google_fonts/google_fonts.dart';
 
 class FooderlichTheme {
   static TextTheme lightTextTheme = TextTheme(
-    headlineLarge: GoogleFonts.openSans(
+    bodyText1: GoogleFonts.openSans(
+      fontSize: 14.0,
+      fontWeight: FontWeight.w700,
+      color: Colors.black,
+    ),
+    headline1: GoogleFonts.openSans(
       fontSize: 32.0,
       fontWeight: FontWeight.bold,
       color: Colors.black,
     ),
-    headlineMedium: GoogleFonts.openSans(
+    headline2: GoogleFonts.openSans(
       fontSize: 21.0,
       fontWeight: FontWeight.w700,
       color: Colors.black,
     ),
-    headlineSmall: GoogleFonts.openSans(
+    headline3: GoogleFonts.openSans(
       fontSize: 16.0,
       fontWeight: FontWeight.w600,
       color: Colors.black,
     ),
-    titleLarge: GoogleFonts.openSans(
+    headline6: GoogleFonts.openSans(
       fontSize: 20.0,
-      fontWeight: FontWeight.bold,
-      color: Colors.black,
-    ),
-    bodyMedium: GoogleFonts.openSans(
-      fontSize: 14.0,
-      fontWeight: FontWeight.w700,
+      fontWeight: FontWeight.w600,
       color: Colors.black,
     ),
   );
-  
+
   static TextTheme darkTextTheme = TextTheme(
-    headlineLarge: GoogleFonts.openSans(
+    bodyText1: GoogleFonts.openSans(
+      fontSize: 14.0,
+      fontWeight: FontWeight.w700,
+      color: Colors.white,
+    ),
+    headline1: GoogleFonts.openSans(
       fontSize: 32.0,
       fontWeight: FontWeight.bold,
       color: Colors.white,
     ),
-    headlineMedium: GoogleFonts.openSans(
+    headline2: GoogleFonts.openSans(
       fontSize: 21.0,
       fontWeight: FontWeight.w700,
       color: Colors.white,
     ),
-    headlineSmall: GoogleFonts.openSans(
+    headline3: GoogleFonts.openSans(
       fontSize: 16.0,
       fontWeight: FontWeight.w600,
       color: Colors.white,
     ),
-    titleLarge: GoogleFonts.openSans(
+    headline6: GoogleFonts.openSans(
       fontSize: 20.0,
-      fontWeight: FontWeight.bold,
-      color: Colors.white,
-    ),
-    bodyMedium: GoogleFonts.openSans(
-      fontSize: 14.0,
-      fontWeight: FontWeight.w700,
+      fontWeight: FontWeight.w600,
       color: Colors.white,
     ),
   );
@@ -62,9 +62,9 @@ class FooderlichTheme {
     return ThemeData(
       brightness: Brightness.light,
       checkboxTheme: CheckboxThemeData(
-        fillColor: MaterialStateColor.resolveWith(
-          (states) => Colors.black,
-        ),
+        fillColor: MaterialStateColor.resolveWith((states) {
+          return Colors.black;
+        }),
       ),
       appBarTheme: const AppBarTheme(
         foregroundColor: Colors.black,

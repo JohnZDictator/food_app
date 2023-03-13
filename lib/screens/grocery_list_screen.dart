@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:fooderlich/components/grocery_tile.dart';
-import 'package:fooderlich/models/models.dart';
 
-import 'grocery_item_screen.dart';
+import '../components/grocery_tile.dart';
+import '../models/models.dart';
 
 class GroceryListScreen extends StatelessWidget {
-  const GroceryListScreen({super.key, required this.manager});
-
   final GroceryManager manager;
+
+  const GroceryListScreen({
+    super.key,
+    required this.manager,
+  });
 
   @override
   Widget build(BuildContext context) {
     final groceryItems = manager.groceryItems;
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16.0),
       child: ListView.separated(
         itemCount: groceryItems.length,
         itemBuilder: (context, index) {
@@ -27,7 +29,7 @@ class GroceryListScreen extends StatelessWidget {
               child: const Icon(
                 Icons.delete_forever,
                 color: Colors.white,
-                size: 50,
+                size: 50.0,
               ),
             ),
             onDismissed: (direction) {
@@ -39,21 +41,6 @@ class GroceryListScreen extends StatelessWidget {
               );
             },
             child: InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => GroceryItemScreen(
-                      originalItem: item,
-                      onUpdate: (item) {
-                        manager.updateItem(item, index);
-                        Navigator.pop(context);
-                      },
-                      onCreate: (item) {},
-                    ),
-                  ),
-                );
-              },
               child: GroceryTile(
                 key: Key(item.id),
                 item: item,
@@ -63,10 +50,15 @@ class GroceryListScreen extends StatelessWidget {
                   }
                 },
               ),
+              onTap: () {
+                // TODO: Navigate to grocery item
+              },
             ),
           );
         },
-        separatorBuilder: (context, index) => const SizedBox(height: 16),
+        separatorBuilder: (context, index) {
+          return const SizedBox(height: 16.0);
+        },
       ),
     );
   }

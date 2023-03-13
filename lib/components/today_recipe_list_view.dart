@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
 
-import '../models/models.dart';
 import '../components/components.dart';
+import '../models/models.dart';
 
 class TodayRecipeListView extends StatelessWidget {
-  const TodayRecipeListView({super.key, required this.recipes});
-
   final List<ExploreRecipe> recipes;
+
+  const TodayRecipeListView({
+    super.key,
+    required this.recipes,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+      padding: const EdgeInsets.only(
+        left: 16,
+        right: 16,
+        top: 16,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Recipes of the Day....',
-            style: Theme.of(context).textTheme.headlineLarge,
+            'Recipes of the Day 🍳',
+            style: Theme.of(context).textTheme.headline1,
           ),
           const SizedBox(height: 16),
           Container(
@@ -48,7 +55,7 @@ class TodayRecipeListView extends StatelessWidget {
     } else if (recipe.cardType == RecipeCardType.card3) {
       return Card3(recipe: recipe);
     } else {
-      throw Exception('This card doesn\'t exist yet...');
+      throw Exception("This card doesn't exist yet");
     }
   }
 }
