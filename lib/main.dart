@@ -3,8 +3,9 @@ import 'package:provider/provider.dart';
 
 import 'fooderlich_theme.dart';
 import 'models/models.dart';
+import 'navigator/app_route_parser.dart';
 import 'screens/screens.dart';
-import 'navigation/app_router.dart';
+// TODO: Import app_router
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,17 +26,9 @@ class Fooderlich extends StatefulWidget {
 class FooderlichState extends State<Fooderlich> {
   late final _groceryManager = GroceryManager();
   late final _profileManager = ProfileManager();
-  late AppRouter _appRouter;
-
-  @override
-  void initState() {
-    super.initState();
-    _appRouter = AppRouter(
-      appStateManager: widget.appStateManager,
-      groceryManager: _groceryManager,
-      profileManager: _profileManager,
-    );
-  }
+  // TODO: Initialize AppRouter
+  // final _appRouter = AppRouter();
+  final routerParser = AppRouteParser();
 
   @override
   Widget build(BuildContext context) {
@@ -60,18 +53,15 @@ class FooderlichState extends State<Fooderlich> {
             theme = FooderlichTheme.light();
           }
 
-          return MaterialApp(
+          // TODO: Replace with Router
+          return MaterialApp.router(
             theme: theme,
             title: 'Fooderlich',
-            home: Router(
-              routerDelegate: _appRouter,
-            ),
+            backButtonDispatcher: RootBackButtonDispatcher(),
+            routeInformationParser: routerParser,
+            routerDelegate: _appRouter,
+            // home: const LoginScreen(),
           );
-          // return MaterialApp(
-          //   theme: theme,
-          //   title: 'Fooderlich',
-          //   home: const LoginScreen(),
-          // );
         },
       ),
     );

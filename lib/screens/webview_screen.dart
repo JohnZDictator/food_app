@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -14,10 +16,10 @@ class WebViewScreenState extends State<WebViewScreen> {
   @override
   void initState() {
     super.initState();
+
     controller = WebViewController()
-      ..loadRequest(
-        Uri.parse('https://www.raywenderlich.com/'),
-      );
+      ..loadRequest(Uri.parse('https://www.raywenderlich.com/'));
+
     // Enable hybrid composition.
     // if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }

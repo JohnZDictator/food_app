@@ -1,6 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'models.dart';
 
 class FooderlichTab {
   static const int explore = 0;
@@ -8,31 +8,40 @@ class FooderlichTab {
   static const int toBuy = 2;
 }
 
+// AppStateManager mocks the various app state such as app initialization,
+// app login, and onboarding.
 class AppStateManager extends ChangeNotifier {
-  bool _initialized = false;
+  // Checks to see if the user is logged in
   bool _loggedIn = false;
+  // Checks to see if the user has completed onboarding
   bool _onboardingComplete = false;
+  // Records the current tab the user is on.
   int _selectedTab = FooderlichTab.explore;
+  // Stores user state properties on platform specific file system.
+  final _appCache = AppCache();
 
-  bool get isInitialized => _initialized;
+  // Property getters.
   bool get isLoggedIn => _loggedIn;
   bool get isOnboardingComplete => _onboardingComplete;
   int get getSelectedTab => _selectedTab;
 
+  // Initializes the app
   Future<void> initializeApp() async {
-    Timer(const Duration(milliseconds: 10000), () {
-      _initialized = true;
-      notifyListeners();
-    });
+    // Check if the user is logged in
+    _loggedIn = await _appCache.isUserLoggedIn();
+    // Check if the user completed onboarding
+    _onboardingComplete = await _appCache.didCompleteOnboarding();
   }
 
-  void login(String username, String password) {
+  void login(String username, String password) async {
     _loggedIn = true;
+    await _appCache.cacheUser();
     notifyListeners();
   }
 
-  void completeOnboarding() {
+  void onboarded() async {
     _onboardingComplete = true;
+    await _appCache.completeOnboarding();
     notifyListeners();
   }
 
@@ -46,13 +55,15 @@ class AppStateManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  void logout() {
+  void logout() async {
+    // Reset all properties once user logs out
     _loggedIn = false;
     _onboardingComplete = false;
-    _initialized = false;
     _selectedTab = 0;
 
-    initializeApp();
+    // Reinitialize the app
+    await _appCache.invalidate();
+    await initializeApp();
     notifyListeners();
   }
 }

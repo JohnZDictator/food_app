@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fooderlich/models/app_state_manager.dart';
-import 'package:provider/provider.dart';
-
-import '../navigation/app_paths.dart';
 
 class LoginScreen extends StatelessWidget {
   final String? username;
@@ -19,8 +15,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: MediaQuery.of(context).size.height,
+      body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: ListView(
@@ -61,8 +56,7 @@ class LoginScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
         onPressed: () async {
-          Provider.of<AppStateManager>(context, listen: false)
-              .login('mockUsername', 'mockPassword');
+          // TODO: Initiate Login
         },
       ),
     );
@@ -86,14 +80,6 @@ class LoginScreen extends StatelessWidget {
         hintText: hintText,
         hintStyle: const TextStyle(height: 0.5),
       ),
-    );
-  }
-
-  static MaterialPage page() {
-    return const MaterialPage(
-      name: FooderlichPages.loginPath,
-      key: ValueKey(FooderlichPages.loginPath),
-      child: LoginScreen(),
     );
   }
 }

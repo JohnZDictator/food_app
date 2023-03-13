@@ -1,23 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:fooderlich/models/app_state_manager.dart';
-import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
-import '../navigation/app_paths.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
   @override
   OnboardingScreenState createState() => OnboardingScreenState();
-
-  static MaterialPage page() {
-    return const MaterialPage(
-      name: FooderlichPages.onboardingPath,
-      key: ValueKey(FooderlichPages.onboardingPath),
-      child: OnboardingScreen(),
-    );
-  }
 }
 
 class OnboardingScreenState extends State<OnboardingScreen> {
@@ -52,8 +40,6 @@ class OnboardingScreenState extends State<OnboardingScreen> {
           child: const Text('Skip'),
           onPressed: () {
             // TODO: Initiate onboarding
-            Provider.of<AppStateManager>(context, listen: false)
-                .completeOnboarding();
           },
         ),
       ],
