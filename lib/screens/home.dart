@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'explore_screen.dart';
 import 'grocery_screen.dart';
 import 'recipes_screen.dart';
+
+import 'package:provider/provider.dart';
+import '../models/models.dart';
 
 class Home extends StatefulWidget {
   const Home({
@@ -40,7 +44,13 @@ class HomeState extends State<Home> {
         selectedItemColor: Theme.of(context).textSelectionTheme.selectionColor,
         currentIndex: widget.currentTab,
         onTap: (index) {
-          // TODO: Update user's selected tab
+          Provider.of<AppStateManager>(context, listen: false).goToTab(index);
+          context.goNamed(
+            'home',
+            params: {
+              'tab': '$index',
+            },
+          );
         },
         items: const [
           BottomNavigationBarItem(
@@ -71,7 +81,12 @@ class HomeState extends State<Home> {
           ),
         ),
         onTap: () {
-          // TODO: Navigate to profile screen
+          context.goNamed(
+            'profile',
+            params: {
+              'tab': '$currentTab',
+            },
+          );
         },
       ),
     );
